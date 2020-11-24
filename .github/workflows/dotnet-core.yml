@@ -22,8 +22,8 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     #- name: Test
       #run: dotnet test --no-restore --verbosity normal
-    - name: Unit test
-      run: dotnet test ./AnimalAdoption.Web.Portal.UnitTests/AnimalAdoption.Web.Portal.UnitTests.csproj
+    - name: Test
+      run: dotnet test AnimalAdoption.Web.Portal.UnitTests --no-restore --verbosity normal
     - name: List out directory contents
       run: |
           echo "Listing the contents of the GitHub workspace directory"
