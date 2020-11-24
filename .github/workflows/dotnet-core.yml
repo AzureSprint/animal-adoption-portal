@@ -22,15 +22,14 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     #- name: Test
       #run: dotnet test --no-restore --verbosity normal
+    - name: Unit test
+      run: dotnet test ./AnimalAdoption.Web.Portal.UnitTests/AnimalAdoption.Web.Portal.UnitTests.csproj
     - name: List out directory contents
       run: |
           echo "Listing the contents of the GitHub workspace directory"
           ls ${{ github.workspace }}
           echo "Recursively listing all contents of the current directory"
           ls -R
-          
-    - name: Unit test
-      run: dotnet test ./AnimalAdoption.Web.Portal.UnitTests/AnimalAdoption.Web.Portal.UnitTests.csproj
           
     #- uses: actions/checkout@v2
     #- run: mkdir -p path/to/artifact
