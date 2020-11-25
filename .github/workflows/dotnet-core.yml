@@ -30,7 +30,7 @@ jobs:
           ls -R
 
     - name: Upload artifact
-    - uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v2
       with:
         name: AnimalAdoptionWebPortal
         path: ./AnimalAdoption.Web.Portal/bin/Release/netcoreapp3.1/AnimalAdoption.Web.Portal.dll
