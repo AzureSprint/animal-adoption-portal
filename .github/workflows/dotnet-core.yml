@@ -47,7 +47,7 @@ jobs:
       
     - name: Add NuGet Source
       #run: dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -n github -u ${{ github.repository_owner }} -p ${{ secrets.PACKAGES_PAT }} --store-password-in-clear-text
-      run: dotnet nuget add source https://nuget.pkg.github.com/AzureSprint/index.json -n github -u ${{ github.repository_owner }} -p ${{ secrets.PACKAGES_PAT }} --store-password-in-clear-text
+      run: dotnet nuget add source https://nuget.pkg.github.com/AzureSprint/index.json -n github -u jamesjeongtangun -p ${{ secrets.PACKAGES_PAT }} --store-password-in-clear-text
 
     - name: Publish NuGet Package
       run: dotnet nuget push *.nupkg --source "github" --api-key ${{ secrets.PACKAGES_PAT }} --skip-duplicate
