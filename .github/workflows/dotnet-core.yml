@@ -32,24 +32,35 @@ jobs:
         source-url: ${{ env.GitHubPackageFeedUrl }}
       env:
         NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub automatically creates a GITHUB_TOKEN secret to use in your workflow
-
-    - name: Package up project
-      run: dotnet pack --configuration Release ${{ env.LogicProjectPath }}
-
-    - name: Push package to GitHub registry
-      run: dotnet nuget push ${{ env.LogicProjectPath }}/**/*.nupkg --skip-duplicate
-
+      
     #- name: Setup .NET Core
     #  uses: actions/setup-dotnet@v1
     #  with:
     #    dotnet-version: 3.1.301
-      
+    
     - name: Install dependencies
       run: dotnet restore
+
+    - name: Package up project
+      #run: dotnet pack --configuration Release ${{ env.LogicProjectPath }}
+      run: dotnet pack -o . -p:PackageVersion=${{ env.VERSION }}.${{ github.run_number }}
+      
+    - name: Add NuGet Source
+      run: dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -n github -u ${{ github.repository_owner }} -p ${{ secrets.PACKAGES_PAT }} --store-password-in-clear-text
+
+    - name: Publish NuGet Package
+      run: dotnet nuget push *.nupkg --source "github" --api-key ${{ secrets.PACKAGES_PAT }} --skip-duplicate
+      
+    #- name: Push package to GitHub registry
+      #run: dotnet nuget push ${{ env.LogicProjectPath }}/**/*.nupkg --skip-duplicate
+
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test AnimalAdoption.Web.Portal.UnitTests --no-restore --verbosity normal
+      
+    - name: Publish
+      run: dotnet publish AnimalAdoption.Web.Portal -o AnimalAdoption.Web.Portal/published
       
     #- name: List out directory contents
     #  run: |
@@ -62,7 +73,8 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: AnimalAdoptionWebPortal
-        path: ./AnimalAdoption.Web.Portal/bin/Release/netcoreapp3.1/AnimalAdoption.Web.Portal.dll
+        #path: ./AnimalAdoption.Web.Portal/bin/Release/netcoreapp3.1/AnimalAdoption.Web.Portal.dll
+        path: ${{ github.workspace }}/AnimalAdoption.Web.Portal/published
 
   deploy:
     needs: build
