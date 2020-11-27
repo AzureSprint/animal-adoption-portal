@@ -98,8 +98,8 @@ jobs:
     - name: Get Azure Key Vault
       uses: azure/get-keyvault-secrets@v1.0
       with:
-        keyvault: AzureSprintKey
-        secrets: GlobalPassword
+        keyvault: "AzureSprintKey"
+        secrets: 'GlobalPassword'
       id: myGetSecretAction
       
     - name: Set Web App ACR authentication
