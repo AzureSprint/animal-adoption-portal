@@ -107,7 +107,7 @@ jobs:
       with:
        app-name: AzureSprintWebAppTest
        app-settings-json: |
-         [ {"name":"GlobalPassword","value":${{ steps.myGetSecretAction.outputs.GlobalPassword }},"slotSetting":true} ]
+         [ {"name":"GlobalPassword","value":"${{ steps.myGetSecretAction.outputs.GlobalPassword }}","slotSetting":true} ]
        #app-settings-json: '{"GlobalPassword": steps.myGetSecretAction.outputs.GlobalPassword}'
        #GlobalPassword: ${{ steps.myGetSecretAction.outputs.GlobalPassword }}
 
