@@ -106,7 +106,9 @@ jobs:
       uses: azure/appservice-settings@v1
       with:
        app-name: AzureSprintWebAppTest
-       app-settings-json: '{"GlobalPassword": steps.myGetSecretAction.outputs.GlobalPassword}'
+       app-settings-json: |
+         [ { "GlobalPassword": steps.myGetSecretAction.outputs.GlobalPassword } ]
+       #app-settings-json: '{"GlobalPassword": steps.myGetSecretAction.outputs.GlobalPassword}'
        #GlobalPassword: ${{ steps.myGetSecretAction.outputs.GlobalPassword }}
 
     - name: Deploy to Azure WebApp
