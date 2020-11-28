@@ -96,7 +96,7 @@ jobs:
        #app-settings-json: '${{ secrets.APP_SETTINGS }}'
        
     - name: Get Azure Key Vault
-      uses: azure/get-keyvault-secrets@v1.0
+      uses: azure/get-keyvault-secrets@v1
       with:
         keyvault: "AzureSprintKey"
         secrets: 'GlobalPassword'
