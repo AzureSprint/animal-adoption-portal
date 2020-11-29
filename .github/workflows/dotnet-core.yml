@@ -132,21 +132,4 @@ jobs:
           resourceGroupServicePrincipalManagedApplicationObjectId=${{ secrets.APP_YUN_OBJECTID }},
           tenantGuid=${{ secrets.AZURE_TENANTGUID }},
           webAppName=AzureSprintWebAppProd,
-          keyVaultName=AzureSprintTemplateKey,
-        #{
-          #"appServicePlanName": {
-            #"type": "string",
-            #"value": "AzureSprintWebAppPlan" },
-          #"keyVaultName": {
-            #"type": "string",
-            #"value": "AzureSprintTemplateKey" },
-          #"resourceGroupServicePrincipalManagedApplicationObjectId": {
-            #"type": "string",
-            #"value": "19a3194d-34a1-4049-879c-03001181a2a1" },
-          #"tenantGuid": {
-            #"type": "string",
-            #"value": "${{ secrets.AZURE_TENANTGUID }}" },
-          #"webAppName": {
-            #"type": "string",
-            #"value": "AzureSprintWebAppProd" }
-        #}
+          keyVaultName=AzureSprintTemplateKey
