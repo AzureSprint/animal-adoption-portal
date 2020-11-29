@@ -123,5 +123,6 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ secrets.AZURE_RG_NAME }}
-        template: ./ARMTemplate.json
+        #template: ./ARMTemplate.json
+        template: https://github.com/AzureSprint/animal-adoption-portal/blob/master/ARMTemplate.json
         parameters: GlobalPassword=${{ steps.myGetSecretAction.outputs.GlobalPassword }}
