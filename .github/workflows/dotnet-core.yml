@@ -111,12 +111,17 @@ jobs:
        #app-settings-json: '{"GlobalPassword": steps.myGetSecretAction.outputs.GlobalPassword}'
        #GlobalPassword: ${{ steps.myGetSecretAction.outputs.GlobalPassword }}
 
-    - name: Deploy to Azure WebApp
+    - name: Deploy to Azure WebApp to Test
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.PUBLISH_CREDENTIALS_DEV }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-    
-    
-    
+        
+    - name: Run ARM deploy to Prod
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        resourceGroupName: ${{ secrets.AZURE_RG_NAME }}
+        template: ./ARMTemplate.json
+        parameters: GlobalPassword=${{ steps.myGetSecretAction.outputs.GlobalPassword }}
