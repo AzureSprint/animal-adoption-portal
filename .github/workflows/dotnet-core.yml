@@ -129,10 +129,10 @@ jobs:
         #parameters: GlobalPassword=${{ steps.myGetSecretAction.outputs.GlobalPassword }}
         parameters: 
           appServicePlanName=AzureSprintWebAppPlan,
-          keyVaultName=AzureSprintTemplateKey,
           resourceGroupServicePrincipalManagedApplicationObjectId=${{ secrets.APP_YUN_OBJECTID }},
           tenantGuid=${{ secrets.AZURE_TENANTGUID }},
-          webAppName=AzureSprintWebAppProd
+          webAppName=AzureSprintWebAppProd,
+          keyVaultName=AzureSprintTemplateKey,
         #{
           #"appServicePlanName": {
             #"type": "string",
