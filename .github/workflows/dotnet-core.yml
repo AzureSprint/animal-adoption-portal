@@ -118,6 +118,11 @@ jobs:
         publish-profile: ${{ secrets.PUBLISH_CREDENTIALS_DEV }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
         
+    - name: Login via Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS_PROD }}
+        
     - name: Get Azure Key Vault Prod
       uses: azure/get-keyvault-secrets@v1
       with:
