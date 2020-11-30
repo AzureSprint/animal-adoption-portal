@@ -132,5 +132,5 @@ jobs:
           resourceGroupServicePrincipalManagedApplicationObjectId=${{ secrets.APP_YUN_OBJECTID }},
           tenantGuid=${{ secrets.AZURE_TENANTGUID }},
           appServicePlanName=AzureSprintWebAppPlan,
-          resourceLocation=Australia East,
+          resourceLocation=AustraliaEast,
           keyVaultName=AzureSprintTemplateKey
