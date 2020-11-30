@@ -126,10 +126,9 @@ jobs:
         #template: ./ARMTemplate.json
         #template: https://github.com/AzureSprint/animal-adoption-portal/blob/master/ARMTemplate.json
         template: https://raw.githubusercontent.com/AzureSprint/animal-adoption-portal/master/ARMTemplate.json
-        #parameters: GlobalPassword=${{ steps.myGetSecretAction.outputs.GlobalPassword }}
         parameters: 
           webAppName=AzureSprintWebAppProd
-          resourceGroupServicePrincipalManagedApplicationObjectId=${{ secrets.APP_YUN_OBJECTID }}
+          resourceGroupServicePrincipalManagedApplicationObjectId=${{ secrets.AZURE_YUN_OBJECT_ID }}
           tenantGuid=${{ secrets.AZURE_TENANTGUID }}
           appServicePlanName=AzureSprintWebAppPlan
           keyVaultName=AzureSprintTemplateKey
