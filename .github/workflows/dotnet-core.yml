@@ -85,7 +85,7 @@ jobs:
       with:
         name: AnimalAdoptionWebPortal
     
-    - name: Login via Azure CLI
+    - name: Login via Azure CLI as Test App
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
@@ -118,7 +118,7 @@ jobs:
         publish-profile: ${{ secrets.PUBLISH_CREDENTIALS_DEV }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
         
-    - name: Login via Azure CLI
+    - name: Login via Azure CLI as Prod App
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_PROD }}
