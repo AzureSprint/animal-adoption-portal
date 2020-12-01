@@ -123,20 +123,6 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_PROD }}
-    
-    - name: Get Azure Key Vault Prod
-      uses: azure/get-keyvault-secrets@v1
-      with:
-        keyvault: "AzureSprintKeyProd"
-        secrets: 'GlobalPassword'
-      id: myGetSecretActionProd
-      
-    - name: Set Web App ACR authentication Prod
-      uses: azure/appservice-settings@v1
-      with:
-       app-name: AzureSprintWebAppProd
-       app-settings-json: |
-         [ {"name":"GlobalPassword","value":"${{ steps.myGetSecretActionProd.outputs.GlobalPassword }}","slotSetting":true} ]
 
     - name: Run ARM deploy to Prod
       uses: azure/arm-deploy@v1
@@ -152,6 +138,20 @@ jobs:
           tenantGuid=${{ secrets.AZURE_TENANTGUID }}
           appServicePlanName=AzureSprintWebAppPlan
           keyVaultName=AzureSprintKeyProd
+    
+    - name: Get Azure Key Vault Prod
+      uses: azure/get-keyvault-secrets@v1
+      with:
+        keyvault: "AzureSprintKeyProd"
+        secrets: 'GlobalPassword'
+      id: myGetSecretActionProd
+      
+    - name: Set Web App ACR authentication Prod
+      uses: azure/appservice-settings@v1
+      with:
+       app-name: AzureSprintWebAppProd
+       app-settings-json: |
+         [ {"name":"GlobalPassword","value":"${{ steps.myGetSecretActionProd.outputs.GlobalPassword }}","slotSetting":true} ]
 
     - name: Deploy to Azure WebApp to Prod
       uses: azure/webapps-deploy@v2
